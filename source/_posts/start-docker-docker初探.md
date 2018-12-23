@@ -24,7 +24,7 @@ categories: docker&kubernetes
 
 容器技术在某种程度上与虚拟化技术有点相似，不少人对于这两者的区别不是很清楚。因此，在这里对两者做一些简单的对比介绍，使读者能明确这两种技术上的区别：
 
-![dockervsvirtual](./start-docker-docker初探/docker.png)
+![dockervsvirtual](docker.png)
 
 从上图中可以大概看出，虚拟机运行于`Hypervisor`之上，每个虚拟机中单独运行着一个`Guest OS`。容器技术中，没有`Hypervisor`这一层，则容器和主机间共享硬件资源及操作系统。容器技术中，系统环境的隔离来自于`Namespaces`，环境资源的隔离来自于`Cgroups`，这些在后面文章会有涉及。
 
