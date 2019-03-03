@@ -2,7 +2,7 @@
 title: start-docker--docker初探
 date: 2018-12-23 10:42:24
 tags: docker
-categories: docker&kubernetes
+categories: 容器技术
 ---
 
 
