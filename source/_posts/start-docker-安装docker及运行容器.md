@@ -1,8 +1,9 @@
+---
 title: start-docker--安装docker及运行容器
 date: 2019-03-02 22:59:39
 tags:  docker
 categories: 容器技术
-
+---
 
 
 ## 安装Docker
@@ -67,7 +68,7 @@ sudo apt-get purge docker-ce
 docker run hello-world
 ```
 
-结果如下所示：![hello-world](./start-docker-安装docker及运行容器/选区_003.png)
+结果如下所示：![hello-world](选区_003.png)
 
 则证明`docker`安装正确，`hello-world`是一个很小的镜像，主要作用就是测试`Docker`是否安装正确。
 
@@ -79,11 +80,11 @@ docker run hello-world
 
 上面介绍了简单的`docker run`命令，但是，在实际的使用中，我们不可能只需要容器输出一段文字就可以了，这对于我们来说毫无意义。下面，我们就运行一个常规的容器，并简单介绍一些容器的使用命令。
 
-首先，我们在镜像仓库中查找一下想要运行的容器镜像：![search_image](./start-docker-安装docker及运行容器/选区_004.png)
+首先，我们在镜像仓库中查找一下想要运行的容器镜像：![search_image](选区_004.png)
 
-在输出中可以看到，镜像仓库中包含很多`ubuntu`镜像，其中`OFFICIAL`标记为`OK`的镜像是指官方镜像，一般情况下我们优先选择官方镜像。接下来，我们从仓库中下载镜像：![pull_image](./start-docker-安装docker及运行容器/pull_image.png)
+在输出中可以看到，镜像仓库中包含很多`ubuntu`镜像，其中`OFFICIAL`标记为`OK`的镜像是指官方镜像，一般情况下我们优先选择官方镜像。接下来，我们从仓库中下载镜像：![pull_image](pull_image.png)
 
-我们下载了`ubuntu`的镜像，选择`tag`为`16.04`，输出上述信息，表示镜像已经完全下载到本地主机，可以开始使用了。![run_container](./start-docker-安装docker及运行容器/run_container.png)
+我们下载了`ubuntu`的镜像，选择`tag`为`16.04`，输出上述信息，表示镜像已经完全下载到本地主机，可以开始使用了。![run_container](run_container.png)
 
 使用`docker run -it <image:tag> /bin/bash`启动一个容器，启动后，自动进入到容器内部。其中：
 
@@ -98,19 +99,19 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 具体可加入的选项(`OPTIONS`)以及命令(`COMMAND`)和参数(`ARG`)可以查阅[官方文档](https://docs.docker.com/v17.09/engine/reference/commandline/run/)。
 
-启动一个容器后，我们可以重新打开一个终端，查看启动容器的相关信息：![docker_ps](./start-docker-安装docker及运行容器/docker_ps.png)
+启动一个容器后，我们可以重新打开一个终端，查看启动容器的相关信息：![docker_ps](docker_ps.png)
 
-使用`docker ps`命令可以查看到正在运行中的容器的简略信息，其中包含容器ID、镜像信息、执行的命令、创建的时间、状态、端口映射以及容器名称。其中，容器的名称如果在创建容器时没有制定，则`docker`会随机分配一个名称。当然，我们还可以使用`docker inspect`命令来查看容器的详细信息：![inspect](./start-docker-安装docker及运行容器/inspect.png)
+使用`docker ps`命令可以查看到正在运行中的容器的简略信息，其中包含容器ID、镜像信息、执行的命令、创建的时间、状态、端口映射以及容器名称。其中，容器的名称如果在创建容器时没有制定，则`docker`会随机分配一个名称。当然，我们还可以使用`docker inspect`命令来查看容器的详细信息：![inspect](inspect.png)
 
 由于容器的详细信息过多，这里只截取了部分信息。在使用`docker inspect`来获取容器的详细信息时，我们可以使用如下方式过滤输出，只获取我们需要的信息：
 
 - `docker inspect<container_id or container_name> | grep <info>`，如`docker inspect 7a4e82c3d4f5 | grep IPAddress`则输出如下：
 
-  ![grep](./start-docker-安装docker及运行容器/grep.png)
+  ![grep](grep.png)
 
 - `docker inspect --format `的方式进行查询，该方式使用的是`go`语言模板：
 
-  ![inspect](/home/lineway/WorkSpace/linewayBlogCode/source/_posts/start-docker-安装docker及运行容器/format.png)
+  ![inspect](format.png)
 
 上述两种方式，都可以查看容器相关信息，其中第二种方式使用的是`go`语言模板的方式实现的，具体可查阅`go`语言相关文档。
 
