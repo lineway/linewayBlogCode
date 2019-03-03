@@ -108,9 +108,9 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
   ![grep](./start-docker-安装docker及运行容器/grep.png)
 
-- `docker inspect --format {{.NetworkSettings.IPAddress}} <container_id or container_name>`：
+- `docker inspect --format `的方式进行查询，该方式使用的是`go`语言模板：
 
-  ![format](./start-docker-安装docker及运行容器/format.png)
+  ![inspect](/home/lineway/WorkSpace/linewayBlogCode/source/_posts/start-docker-安装docker及运行容器/format.png)
 
 上述两种方式，都可以查看容器相关信息，其中第二种方式使用的是`go`语言模板的方式实现的，具体可查阅`go`语言相关文档。
 
