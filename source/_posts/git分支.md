@@ -1,9 +1,7 @@
----
 title: git分支
 date: 2019-04-07 19:25:05
 tags: git
 categories: git
----
 
 # 分支简介
 
@@ -67,5 +65,36 @@ git checkout master
 git checkout -b newFunction
 ```
 
+上述命令可以在仓库中创建一个新的分支`newFunction`，并且在创建完成后切换到新建的分支上。等于是实现了`branch`和`checkout`两条命令的功能。
+
+假设我们在`newFunction`分支上的开发工作完成了，切换回`master`分支，这时候，查看git状态就会发现，`master`分支还是停留在切换到`newFunction`之前的最后一次提交的状态。
+
+## 分支的合并
+
+假设，我们新分支上的功能代码可以提供给整个项目复用，那么，我们就不必要再重头开始编写代码，而是将`newFunction`分支合并到`master`分支即可。这个操作可以通过`merge`实现，下来看一下具体的流程：
+
+```bash
+# 首先，我们目前处于master分支上
+# 需要建立并切换到newFunction分支上进行开发工作
+git checkout -b newFunction
+# 接着，我们完成了开发工作并提交了相关代码
+# 此时，需要将newFunction中的代码合并到master中
+git checkout master
+git merge newFunction
+```
 
 
+
+## 冲突时的代码合并
+
+假设，在新建的`newFunction`分支上，我们对于代码文件中的某一部分做出了修改。同时，另外的项目组中有同时又创建了一个分支`newIssue`，也对同样的代码中的相同部分做出了修改。这时候，两个项目组都想要将分支合并到`master`中的时候，这里就产生了冲突。
+
+这时候，git会做出合并，但是并不会自动的创建一个新的合并提交，而是在等待认为的去解决这部分冲突内容。产生合并冲突后，可以在项目文件中使用`git status`来查看由于冲突存在而处于未合并（unmerged）状态的文件。
+
+产生冲突的输出信息：
+
+![chongtu](https://i.loli.net/2019/04/08/5caabec50f20c.png)
+
+打开产生冲突的文件，如下所示：![unmergefile](https://i.loli.net/2019/04/08/5caabfba70e76.png)
+
+图中的`HEAD`所指示的版本在`======`的上半部分，产生冲突的版本在`======`下半部分。解决冲突的方式就是保留所需要部分的内容，然后删除`<<<<<<`、`======`和`>>>>>>`包含的内容。在解决完冲突后，对于每个文件使用`git add`将其跟踪，然后再进行提交。
