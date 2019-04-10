@@ -82,9 +82,6 @@ git checkout -b newFunction
 git checkout master
 git merge newFunction
 ```
-
-
-
 ## 冲突时的代码合并
 
 假设，在新建的`newFunction`分支上，我们对于代码文件中的某一部分做出了修改。同时，另外的项目组中有同时又创建了一个分支`newIssue`，也对同样的代码中的相同部分做出了修改。这时候，两个项目组都想要将分支合并到`master`中的时候，这里就产生了冲突。
